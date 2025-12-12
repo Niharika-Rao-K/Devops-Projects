@@ -90,10 +90,27 @@ Result: Nginx installed and running.
 ----------------------------------------------------------------------------------------
 
 SSH into EC2 and navigate to /var/www/html/:
+Move your project files to /var/www/html
 
-cd /var/www/html/  
-sudo rm index.nginx-debian.html  
+Nginx serves files from:
 
+/var/www/html/
+
+So you need your index.html to be in that folder, not in a nested directory.
+Run these commands:
+cd /var/www/html/
+
+# Remove Nginx default page (if it still exists)
+sudo rm -f index.nginx-debian.html
+
+# Move your project files up one directory
+sudo mv Devops-Projects/Hosting_Webserver_AWS/* .
+
+# (Optional) Remove now empty folder
+sudo rmdir Devops-Projects/Hosting_Webserver_AWS
+
+(cd /var/www/html/  
+sudo rm index.nginx-debian.html)  
 
 Restart Nginx:
 
